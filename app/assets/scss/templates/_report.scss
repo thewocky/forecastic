@@ -1,0 +1,381 @@
+/******************************************************************
+
+Weather Report
+
+******************************************************************/
+
+.reports-wrapper {
+  @include cover-full();
+  top: 60px;
+  overflow: hidden;
+  .report {
+    text-align: center;
+    @include cover-full();
+    .forecast-day {
+      // border-bottom: 1px solid yellow;
+      text-shadow: 0 2px 8px black;
+      position: relative;
+      div {
+        position: absolute;
+      }
+      input[type="txt"] {
+        color: blue;
+      }
+      .date {
+        text-align:right;
+      }
+      .temp {
+        &:before {
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+        }
+        &:after {
+          content: '°';
+          position: relative;
+        }
+      }
+      .temp-min {
+        color: $clr-cold;
+        &:before {
+          content: 'min';
+          right: 100%;
+        }
+      }
+      .temp-max {
+        color: $clr-warm;
+        &:before {
+          content: 'max';
+          left: 100%;
+        }
+      }
+      .spectrum {
+        @include _bg-ctr();
+        background-image:url(../img/global/spectrum.jpg);
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: 0;
+          height:1px;
+          @include _bg-ctr();
+          background-image:url(../img/global/spectrum.jpg);
+        }
+      }
+    }
+  }
+  .report-bg {
+    font-size: 12px;
+    // background: css-gradient( rgba(0,0,0,1) , rgba(0,0,0,0) );
+    .forecast-day {
+      height: 12%;
+      cursor: pointer;
+      // @include bezier-trans();
+      font-weight: 600;
+      /*
+      &.day-0 {
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+          height:1px;
+          @include _bg-ctr();
+          background-image:url(../img/global/spectrum.jpg);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
+      }
+      */
+      &.active {
+        height: 40%;
+      }
+      .date {
+        top: 8px;
+        right: 0;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 8px;
+        height:1px;
+        @include _bg-ctr();
+        background-image:url(../img/global/spectrum.jpg);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+      }
+      .spectrum {
+        width: 100%;
+        left: 0;
+        bottom: 8px;
+        height: 6px;
+        // background-color: rgba(255,255,0,0.4);
+        @include clipper(0 20% 0 20%);
+
+      }
+      .temp {
+        bottom: 15px;
+        font-size: 150%;
+        font-weight: 600;
+        width: 30px;
+        margin-left: -15px;
+        &:before {
+          font-size: 70%;
+        }
+        &:after {
+          top: 2px;
+        }
+        @media only screen and (min-height: 481px) {
+          bottom: 16px;
+        }
+        @media only screen and (min-height: 769px) {
+          bottom: 18px;
+        }
+      }
+      .temp-curr {
+        color: white;
+        font-weight: 600;
+        @media only screen and (min-height: 481px) {
+          font-weight: 300;
+          font-size: 200%;
+        }
+        @media only screen and (min-height: 769px) {
+          font-weight: 300;
+          font-size: 250%;
+        }
+      }
+
+    }
+  }
+  .report-fg {
+    @include cover-full();
+    @include bezier-trans();
+    // @include _animate();
+    overflow: hidden;
+    height:40%;
+    &:after {
+      content: "";
+      background-image: linear-gradient( rgba(0,0,0,0) , rgba(0,0,0,0.5) );
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 60%;
+      z-index: 2;
+    }
+    .forecast-day {
+      height: 16.667%;
+      z-index: 3;
+      .date {
+        bottom: 72px;
+        font-weight: 600;
+        font-size: 12pt;
+        right: 0;
+      }
+      .temp {
+        top: 50%;
+        text-shadow: 0 4px 8px black;
+        &:before {
+          bottom: 10px;
+          font-size: 40%;
+          font-weight: 400;
+        }
+        &:after {
+          top: 12px;
+        }
+      }
+      .temp-min:before {
+        text-align: right;
+      }
+      .temp-max:before {
+        text-align: left;
+      }
+      .temp-min, .temp-max {
+        font-size: 180%;
+        width: 70px;
+        margin-left: -35px;
+        margin-top: -35px;
+        @media only screen and (min-height: 481px) {
+          font-size: 220%;
+        }
+        @media only screen and (min-height: 769px) {
+          font-size: 250%;
+        }
+      }
+      .temp-curr {
+        font-size: 300%;
+        left: 50%;
+        width: 140px;
+        margin-left: -70px;
+        margin-top: -60px;
+        font-weight: 200;
+        @media only screen and (min-height: 481px) {
+          font-size: 400%;
+          margin-top: -75px;
+        }
+        @media only screen and (min-height: 769px) {
+          font-size: 500%;
+          margin-top: -85px;
+        }
+
+      }
+      .summary {
+        width: 100%;
+        top: 5px;
+        font-weight: 500;
+        font-size: 85%;
+        @media only screen and (min-height: 481px) {
+          top: 6px;
+          font-size: 90%;
+        }
+        @media only screen and (min-height: 769px) {
+          top: 8px;
+          font-size: 100%;
+        }
+
+      }
+      &:before {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 48px;
+        background-color: rgba(0,0,0,0.4);
+      }
+    }
+    .report-container {
+      @include cover-full();
+      @include bezier-trans();
+      height:600%;
+    }
+    .records {
+      position: absolute;
+      bottom: 0;
+      left:0;
+      right: 0;
+      font-size: 75%;
+      // background-color: rgba(0,0,0,0.4);
+      .spectrum {
+        bottom: 26px;
+        height: 3px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        left:0;
+        right: 0;
+        @media only screen and (min-height: 481px) {
+          bottom: 27px;
+          height: 4px;
+        }
+        @media only screen and (min-height: 769px) {
+          bottom: 28px;
+          height: 5px;
+        }
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        height: 56px;
+        width: 300%;
+        left: -100%;
+        background-color: rgba(0,0,0,0.4);
+        @media only screen and (min-height: 481px) {
+          height: 60px;
+        }
+        @media only screen and (min-height: 769px) {
+          height: 64px;
+        }
+      }
+      &:after {
+        // content: "low   -   records   -   hi";
+        position: absolute;
+        bottom: 34px;
+        width: 100%;
+        left: 0;
+        text-align: center;
+        font-size: 80%;
+        font-weight: 200;
+      }
+      .record {
+        position: absolute;
+        bottom: 3px;
+        .record-year {
+          position: absolute;
+          bottom: 30px;
+        }
+        .record-temp {
+          position: absolute;
+          bottom:0px;
+          &:after {
+            content: '°';
+            position: absolute;
+            top:2px;
+          }
+        }
+        &.low {
+          left: 0;
+          color: $clr-cold;
+          .record-temp {
+            &:before {
+              position: absolute;
+              left: 2em;
+              white-space: nowrap;
+              content: '— record low';
+              @include filter( brightness(0.7) );
+              font-size: 90%;
+            }
+            &:after {
+              white-space: nowrap;
+              text-align: left;
+              content: '°';
+            }
+          }
+        }
+        &.hi {
+          right: 0;
+          color: $clr-warm;
+          .record-temp {
+            &:before {
+              white-space: nowrap;
+              text-align: right;
+              content: 'record high — ';
+              @include filter( brightness(0.7) );
+              font-size: 90%;
+            }
+            &:after {
+              content: '°';
+            }
+          }
+          div {
+            right: 0;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+@for $i from 0 through 5 {
+  body.active-#{$i} {
+    .reports-wrapper {
+      .report-fg {
+        top: #{$i * 12%};
+        .report-container {
+          top: #{$i * -100%};
+        }
+      }
+      .report-bg {
+        .day-#{$i} {
+          opacity: 0;
+        }
+      }
+    }
+    .cover-full.bg-offset {
+      // this is jerky
+      // needs JQ instead
+      top: calc(#{$i * -30%} - 60px)
+    }
+  }
+}

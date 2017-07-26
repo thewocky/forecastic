@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Pioneer Square", 
+        "id": "seattle", 
+        "latitude": "47.6025",
+        "longitude": "-122.3352",
+        "img": "assets/img/background/seattle/bg.jpg"
+    }, 
+    {
+        "name": "Machu Picchu", 
+        "id": "machu-picchu", 
+        "latitude": "-13.162861",
+        "longitude": "-72.545244",
+        "img": "assets/img/background/machu-picchu/bg.jpg"
+    }, 
+    {
+        "name": "Giverny", 
+        "id": "giverny", 
+        "latitude": "49.074282",
+        "longitude": "1.533791",
+        "img": "assets/img/background/giverny/bg.jpg"
+    }
+]

@@ -1,0 +1,136 @@
+/******************************************************************
+
+Mixins
+
+Based on: Bones - github.com/eddiemachado/bones
+
+******************************************************************/
+
+/*
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+$prefixes:      ("-webkit-", "-moz-" );
+@mixin transition($transition...) {
+  // defining prefixes so we can use them in mixins below
+  // $prefixes:      ("-webkit-", "" );
+  @each $prefix in $prefixes {
+    #{$prefix}transition: $transition;
+  }
+}
+
+@mixin cover-full() {
+  	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+@mixin bezier-trans($time:0.4s, $ease: cubic-bezier(.13, 0, 0, 1)) {
+  // defining prefixes so we can use them in mixins below
+  
+  @each $prefix in $prefixes {
+    #{$prefix}transition: $time $ease;
+  }
+}
+
+@mixin clipper($props) {
+  // defining prefixes so we can use them in mixins below
+ // $prefixes:      ("-webkit-", "-moz-" );
+  @each $prefix in $prefixes {
+    #{$prefix}clip-path: inset($props);
+  }
+}
+
+/*********************
+CSS3 GRADIENTS
+*********************/
+
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+@mixin css-gradient($from: #dfdfdf, $to: #f8f8f8) {
+	background-color: $to;
+	background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+	background-image: -webkit-linear-gradient(top, $from, $to);
+	background-image: -moz-linear-gradient(top, $from, $to);
+	background-image: -o-linear-gradient(top, $from, $to);
+	background-image: linear-gradient(to bottom, $from, $to);
+}
+
+/*********************
+BOX SIZING
+*********************/
+
+/* @include box-sizing(border-box); */
+@mixin box-sizing($type: border-box) {
+	-webkit-box-sizing: $type;
+	-moz-box-sizing:    $type;
+	-ms-box-sizing:     $type;
+	box-sizing:         $type;
+}
+
+
+@mixin hamburger(
+  $color: $black,
+  $color-hover: $dark-gray,
+  $width: 20px,
+  $height: 16px,
+  $weight: 2px,
+  $bars: 3
+) {
+  // box-shadow CSS output
+  $shadow: ();
+  $hover-shadow: ();
+
+  // Spacing between bars is calculated based on the total height of the icon and the weight of each bar
+  $spacing: floor(($height - ($weight * $bars)) / ($bars - 1));
+
+  // Icon container
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  width: $width;
+  height: $height;
+
+  // Icon bars
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: $weight;
+    background: $color;
+    top: 0;
+    left: 0;
+
+    @for $i from 2 through $bars {
+      $offset: ($weight + $spacing) * ($i - 1);
+      $shadow: append($shadow, 0 $offset 0 $color, comma);
+    }
+
+    box-shadow: $shadow;
+  }
+}
+
+
+@mixin _animate ($property:all, $dur:200ms, $easing:ease-in-out, $delay:0s) {
+	transition: $property $dur $easing $delay;
+}
+
+@mixin _bg-ctr ($bg-size:cover) {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: $bg-size;
+}
+
+@mixin _flex-ctr ( $align:false, $direction:column ) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: center;
+	@if $align {
+		align-items: $align;
+	}
+}
+
+
+

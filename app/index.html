@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" ng-app="foreCasticApp">
+<head>
+  <meta charset="utf-8">
+  <title>ForeCastic</title>
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway%3A200%2C300%2C400%2C500%2C600%2C700&subset=latin%2Clatin-ext&ver=4.3.3" type="text/css" media="all">
+  <script src="assets/js/angular/angular.js"></script>
+  <script src="assets/js/controllers.js"></script>
+  <script src="assets/js/jquery/jquery-1.11.2.min.js"></script>
+  <script src="assets/js/require.js"></script>
+</head>
+<body ng-controller="WeatherReportCtrl as ctrl" ng-class="bodyClass()">
+
+  <div class="container-bg bg-blur cover-full" style="background-image:url({{bgImg}});"></div>
+
+  <nav class="navbar navbar-fixed-top">
+    <div class="container">
+
+      <div id="menu-toggle" class="pull-left">
+        <a href="#" class="hamburger">
+          <!-- <img src="images/responsive-nav.png" alt=""> -->
+        </a>
+      </div>
+      
+      <div class="select-ctrl" id="ctrl-select-location">
+        <select id="select-location" ng-model="location" ng-change="changeLocation(location)" ng-options="location.name for location in locations">
+        </select>
+      </div>
+        
+      <!-- logo -->
+      <h1 id="logo" class="text-hide pull-right logo" itemscope itemtype="http://schema.org/Organization">
+        <img src="assets/img/global/logo.png" alt="CastFore">
+      </h1>
+    </div>
+  </nav>
+
+  <div class="reports-wrapper">
+
+    <div class="report report-bg container">
+      <div ng-repeat="day in forecast" class="forecast-day" ng-class="reportClass(day.index)" ng-click="changeDay(day.index)">
+        <div class="date">{{day.day}}</div>
+        <div class="temp temp-curr" style="left:{{tempCurrPct}}%;" ng-show="{{!!day.temp}}">{{day.temp}}</div>
+        <div class="temp temp-min" style="left:{{tempMinPct}}%;" ng-show="{{!day.temp}}">{{day.minTemp}}</div>
+        <div class="temp temp-max" style="left:{{tempMaxPct}}%;" ng-show="{{!day.temp}}">{{day.maxTemp}}</div>
+
+        <div class="spectrum scale" ng-show="{{!!day.temp}}" style="clip-path:inset(0 {{tempCurrPct-2}}% 0% {{98-tempCurrPct}}%);-moz-clip-path:inset(0 {{98-tempCurrPct}}% 0% {{tempCurrPct-2}}%);-webkit-clip-path:inset(0 {{98-tempCurrPct}}% 0% {{tempCurrPct-2}}%);"></div>
+        <div class="spectrum scale" ng-show="{{!day.temp}}" style="clip-path:inset(0 {{100-tempMaxPct}}% 0% {{tempMinPct}}%);-moz-clip-path:inset(0 {{100-tempMaxPct}}% 0% {{tempMinPct}}%);-webkit-clip-path:inset(0 {{100-tempMaxPct}}% 0% {{tempMinPct}}%);"></div>
+  
+        <input type="txt" class="hidden" ng-init="tempCurrPct=positionLabel(day.temp)" ng-model="tempCurrPct" />
+        <input type="txt" class="hidden" ng-init="tempMinPct=positionLabel(day.minTemp)" ng-model="tempMinPct" />
+        <input type="txt" class="hidden" ng-init="tempMaxPct=positionLabel(day.maxTemp)" ng-model="tempMaxPct" />
+
+  		</div>
+    </div>
+
+
+    <div class="report report-fg cover-full">
+      <div class="container-bg bg-offset cover-full" style="background-image:url({{bgImg}});"></div>
+      <div class="report-container container">
+        <div ng-repeat="day in forecast" class="forecast-day" ng-class="reportClass(day.temp, day.index)">
+        <div class="date">{{day.date}}<br>{{day.dayFull}}</div>
+        <div class="temp temp-curr" ng-show="{{day.temp}}">{{day.temp}}</div>
+        <div class="temp temp-min" style="left:{{tempMinPct}}%;" ng-show="{{!day.temp}}">{{day.minTemp}}</div>
+        <div class="temp temp-max" style="left:{{tempMaxPct}}%;" ng-show="{{!day.temp}}">{{day.maxTemp}}</div>
+        <div class="summary">{{day.summary}}</div>
+  
+        <input type="txt" class="hidden" ng-init="tempMinPct=positionLabel(day.minTemp)" ng-model="tempMinPct" />
+        <input type="txt" class="hidden" ng-init="tempMaxPct=positionLabel(day.maxTemp)" ng-model="tempMaxPct" />
+
+        <div class="records">
+          <div class="spectrum"></div>
+          <div class="record low">
+            <div class="record-year">{{day.recordLow.date}}</div>
+            <div class="record-temp">{{day.recordLow.temp}}</div>
+          </div>
+          <div class="record hi">
+            <div class="record-year">{{day.recordHi.date}}</div>
+            <div class="record-temp">{{day.recordHi.temp}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div id="click-targ" ng-click="displayForecast()" class="hidden"></div>
+  <a href="https://darksky.net/poweredby/" style="display:none;">Powered by Dark Sky</a>
+</body>
+</html>

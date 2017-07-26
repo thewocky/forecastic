@@ -1,0 +1,97 @@
+/******************************************************************
+
+Header
+
+******************************************************************/
+
+.navbar-inverse {
+	background-color: transparent;
+	border-bottom-color: white;
+}
+.navbar {
+	.container {
+		height: 60px;
+		padding-top: 16px;
+		@include display-flex;
+		@include flex-direction(row);
+		@include justify-content(space-between);
+		// @include align-items(center);
+		&:before {
+			display: none;
+		}
+		&:after {
+			content: "";
+			position:absolute;
+			bottom: 0;
+			left: 15px;
+			right: 15px;
+			// width: 100%;
+			height: 1px;
+			background-image:url(../img/global/spectrum.jpg);
+			@include _bg-ctr();
+		}
+	}
+	#menu-toggle {
+        @media only screen and (min-height: 481px) {
+			min-width: 64px;
+        }
+        @media only screen and (min-height: 769px) {
+			min-width: 84px;
+        }
+	}
+	.logo {
+	    width: 30%;
+		max-width: 120px;
+		height: 32px;
+	    text-align: right;
+	    display: flex;
+	    justify-content: flex-end;
+	    align-items: center;
+		img {
+			height: auto;
+			width: 100%;
+		}
+        @media only screen and (min-width: 480px) {
+			max-width: 135px;
+        }
+        @media only screen and (min-width: 768px) {
+			max-width: 150px;
+        }
+	}
+	.hamburger {
+		@include hamburger( white, gold );
+	}
+
+	select {
+	    height: 40px;
+	    margin-top: -6px;
+	    // padding: 0 20px 0 6px;
+	    padding: 0 15px 0 6px;
+	    border-top: 1px solid transparent;
+	    border-left: 1px solid transparent;
+	    border-right: 1px solid transparent;
+	    border-bottom: 1px solid rgba(255,255,255,0.4);
+	    text-align: center;
+	    font-family: inherit;
+	    line-height: normal;
+	    color: white;
+	    background-color: transparent;
+	    border-radius: 0;
+
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+
+	    
+	    background-size: 9px 6px;
+	    background-origin: content-box;
+	    background-repeat: no-repeat;
+		background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjQuODY1cHgiIGhlaWdodD0iMzUuODE3cHgiIHZpZXdCb3g9IjAgMCA2NC44NjUgMzUuODE3IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2NC44NjUgMzUuODE3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMzIuNDMyLDM1LjgxNyAwLDAgNjQuODY1LDAgIi8+DQo8L3N2Zz4NCg==);
+	    background-position: calc(100% + 15px) center;
+
+
+	    box-shadow: none;
+	    padding-bottom: 0;
+	    display: inline-block;
+	    transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+	}
+}

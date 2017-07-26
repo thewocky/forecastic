@@ -1,0 +1,39 @@
+/******************************************************************
+
+Site Name: L4 Five-Day Forecast ()
+Code: Jeff Battema
+Date: May 2016
+
+******************************************************************/
+
+@import 'font-awesome.min.css';
+
+@import 'compass/support';
+@import 'compass/css3';
+@import 'compass/css3/flexbox';
+@import 'compass/css3/columns';
+@import 'compass/css3/filter';
+@import 'compass/css3/transition';
+@import 'compass/css3/transform';
+
+@import "partials/normalize";
+@import "partials/variables";
+@import "partials/functions";
+@import "partials/mixins";
+@import "partials/grid";
+@import "partials/helpers";
+
+// bootstrap
+@import "bootstrap.min.css";
+
+
+/*********************
+BASE (MOBILE) SIZE
+*********************/
+
+// styles in base.scss
+@import "templates/base";
+
+@import "templates/header";
+@import "templates/background";
+@import "templates/report";

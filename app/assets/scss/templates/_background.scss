@@ -1,0 +1,223 @@
+/******************************************************************
+
+Background
+
+******************************************************************/
+.cover-full {
+	@include cover-full();
+//	@mixin _animate ($property:all, $dur:200ms, $easing:ease-in-out, $delay:0s) {
+	&.bg-focus {
+	    opacity: 0.4;
+	}
+    &.bg-offset {
+	    // top: -60px;
+	    height:250%;
+	    height: calc(250% + 60px);
+	    @include bezier-trans();
+	    // TODO: clip focus rectangle
+	    // (or add blurred BG behind records element)
+	    // @include clipper(60px 0% 60% 0%);
+	}
+}
+.container-bg {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	&.bg-blur {
+		@include filter( blur(12px) brightness(0.45) );
+	}
+
+}
+
+> .container-bg,
+.report-fg {
+	// @include _animate( all, 800 );
+	body:not(.loaded) & {
+		// opacity: 0;
+	}
+	body.loaded & {
+		// opacity: 1;
+	}
+}
+
+@keyframes forecast-in {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+
+@keyframes forecast-in-1 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  50% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  70% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+@keyframes forecast-in-2 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  55% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  75% {
+	opacity: 1;
+	transform: translateY(00px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+@keyframes forecast-in-3 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  60% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  80% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+@keyframes forecast-in-4 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  65% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+ 85% {
+	opacity: 1;
+	transform: translateY(00px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+@keyframes forecast-in-5 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  70% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  90% {
+	opacity: 1;
+	transform: translateY(00px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+@keyframes forecast-in-6 {
+  0% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  75% {
+	opacity: 0;
+	transform: translateY(-40px);
+  }
+  95% {
+	opacity: 1;
+	transform: translateY(00px);
+  }
+  100% {
+	opacity: 1;
+	transform: translateY(0px);
+  }
+}
+
+.report-bg .forecast-day {
+	// @include _animate();
+	// opacity: 0;
+	// transform: translateY(-40px);
+	// transition-timing-function: cubic-bezier(.5,0,1,.5);
+	// transition-duration: 400ms;
+	body.loaded & {
+		
+	}
+}
+body:not(.loaded) {
+	.report-bg .forecast-day {
+	}
+}
+
+body.loaded {
+	.report-fg {
+		// transition-delay: 400ms;
+	}
+	.report-bg .forecast-day {
+		// transform: translateY(0);
+		// transition-timing-function: cubic-bezier(0,.5,.5,1);
+		// opacity: 1;
+		animation-name: forecast-in;
+		animation-duration: 1s; 
+		&:nth-child( 1 ) {
+			// animation-delay: 100ms;
+			animation-name: forecast-in-1;
+		}
+		&:nth-child( 2 ) {
+			// animation-delay: 200ms;
+			animation-name: forecast-in-2;
+		}
+		&:nth-child( 3 ) {
+			// animation-delay: 300ms;
+			animation-name: forecast-in-3;
+		}
+		&:nth-child( 4 ) {
+			// animation-delay: 400ms;
+			animation-name: forecast-in-4;
+		}	
+		&:nth-child( 5 ) {
+			// animation-delay: 500ms;
+			animation-name: forecast-in-5;
+		}
+		&:nth-child( 6 ) {
+			// animation-delay: 600ms;
+			animation-name: forecast-in-6;
+		}
+	}
+}
+
+body.active-0 {
+	.report-bg {
+		.forecast-day {
+			&:nth-child( 2 ) {
+				//. opacity: 0 !important;
+			}
+		}
+	}
+}
